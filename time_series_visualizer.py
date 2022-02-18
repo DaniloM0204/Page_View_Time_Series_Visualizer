@@ -10,7 +10,7 @@ df = df = pd.read_csv("fcc-forum-pageviews.csv", parse_dates = ["date"], index_c
 # Clean data
 df = df[ 
     (df["value"] >= df["value"].quantile(0.025)) &
-    (df["value"] >= df["value"].quantile(0.975)) ]
+    (df["value"] <= df["value"].quantile(0.975)) ]
 
 
 def draw_line_plot():
@@ -37,11 +37,10 @@ def draw_bar_plot():
     # Draw bar plot
     fig = df_bar.plot.bar(legend=True, figsize = (13,6), ylabel = "Average Page Views"
                           , xlabel = "Years").figure
-    plt.legend(["January", "February", "March", "April", "May", "June", "July",
-               "August", "September", "October", "November", "December"])
+    plt.legend(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
 
-    plt.xticks(fontsize = 10)
-    plt.yticks(fontsize = 10)
+    plt.xticks(fontsize = 8)
+    plt.yticks(fontsize = 8)
 
 
 
